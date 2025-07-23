@@ -2,90 +2,100 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>One less decision in your office life</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --main-color: #f8b500;
+      --accent-color: #ff7f50;
+      --text-color: #333;
+      --menu-text-color: #b35300;
+    }
+
     body {
       font-family: 'Poppins', Arial, sans-serif;
-      background: linear-gradient(135deg, #fceabb, #f8b500);
-      text-align: center;
-      padding: 40px 20px;
-      color: #444;
-      user-select: none;
+      background: linear-gradient(135deg, #fceabb, var(--main-color));
+      color: var(--text-color);
       margin: 0;
-      overflow: hidden;
-      height: 100vh;
+      padding: 0 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      gap: 15px;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      gap: 1rem;
     }
+
     h1 {
       font-weight: 600;
-      font-size: 2.4rem;
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
       color: #2c3e50;
-      margin: 0;
+      margin-top: 1rem;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
     }
+
     img {
-      max-width: 300px;
       width: 100%;
+      max-width: 280px;
       height: auto;
-      border-radius: 18px;
+      border-radius: 16px;
       box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
+
     #datetime {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #555;
       font-weight: 500;
       letter-spacing: 0.05em;
-      margin: 0;
       user-select: text;
     }
+
     #menu {
-      margin-top: 15px;
-      font-size: 1.4rem;
-      color: #b35300; /* 변경한 부분 */
-      line-height: 2rem;
-      min-height: 3.5rem;
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: var(--menu-text-color);
+      line-height: 1.8rem;
       font-weight: 600;
-      user-select: none;
       white-space: pre-line;
       text-align: left;
-      max-width: 320px;
+      width: 100%;
+      max-width: 360px;
+      background: rgba(255,255,255,0.25);
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
+
     button {
-      margin-top: 25px;
-      padding: 14px 32px;
-      font-size: 1.2rem;
-      background-color: #ff7f50;
+      margin-top: 15px;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      background-color: var(--accent-color);
       color: white;
       border: none;
-      border-radius: 30px;
+      border-radius: 999px;
       cursor: pointer;
       font-weight: 600;
-      box-shadow: 0 5px 15px rgba(255,127,80,0.6);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
+      box-shadow: 0 5px 15px rgba(255,127,80,0.5);
+      transition: all 0.25s ease;
     }
+
     button:hover {
       background-color: #ff6333;
-      box-shadow: 0 8px 20px rgba(255,99,51,0.8);
+      box-shadow: 0 8px 20px rgba(255,99,51,0.7);
     }
-    @media (max-height: 600px) {
-      img {
-        max-width: 220px;
-      }
-      h1 {
-        font-size: 2rem;
-      }
+
+    @media (max-width: 480px) {
       #menu {
-        font-size: 1.2rem;
+        font-size: 1.05rem;
+        line-height: 1.6rem;
       }
+
       button {
-        padding: 12px 26px;
-        font-size: 1rem;
+        width: 100%;
+        max-width: 320px;
       }
     }
   </style>
@@ -93,47 +103,25 @@
 <body>
 
   <h1>One less decision in your office life</h1>
+
   <img src="https://i.chzbgr.com/full/9764489472/hAADBE61C/tie-is-most-important-time-between-log-and-log-out-time-lunch-time-lunchbox" alt="Lunch time meme" />
 
   <div id="datetime"></div>
+
   <div id="menu"></div>
+
   <button onclick="recommendLunch()">추천 받기</button>
 
   <script>
     const menu = {
       "추천 메뉴": [
-        "백채김치찌개",
-        "생선구이",
-        "순두부찌개",
-        "칼국수/막국수/보쌈정식 (황금면가)",
-        "콩사랑",
-        "놀부부대찌개",
-        "찜닭",
-        "북촌손만두",
-        "쌀국수(월미당)",
-        "양평해장국",
-        "수제버거(버거스하이)",
-        "동경규동",
-        "치마오",
-        "콩나물국밥",
-        "육개장",
-        "사위식당(낙지볶음)",
-        "스미식당",
-        "서브웨이",
-        "버거킹",
-        "마라탕",
-        "서래향",
-        "만다린",
-        "열짬뽕",
-        "샤브샤브",
-        "텐동",
-        "김밥천국",
-        "죠스떡볶이",
-        "신전떡볶이",
-        "청년떡볶이",
-        "샐러디",
-        "추어탕",
-        "포케"
+        "백채김치찌개", "생선구이", "순두부찌개", "칼국수/막국수/보쌈정식 (황금면가)",
+        "콩사랑", "놀부부대찌개", "찜닭", "북촌손만두", "쌀국수(월미당)", "양평해장국",
+        "수제버거(버거스하이)", "동경규동", "치마오", "콩나물국밥", "육개장",
+        "사위식당(낙지볶음)", "스미식당", "서브웨이", "버거킹", "마라탕",
+        "서래향", "만다린", "열짬뽕", "샤브샤브", "텐동",
+        "김밥천국", "죠스떡볶이", "신전떡볶이", "청년떡볶이", "샐러디",
+        "추어탕", "포케"
       ]
     };
 
